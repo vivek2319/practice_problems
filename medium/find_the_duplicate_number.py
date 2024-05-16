@@ -11,22 +11,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        result_dict = {}
+        item_set = set()
 
-        slow, fast = 0, 0
-        while True:
-            slow = nums[slow]
-            fast = nums[nums[fast]]
-            if slow == fast:
-                break
-        
-        slow2 = 0
-        while True:
-            slow = nums[slow]
-            slow2 = nums[slow2]
-            if slow == slow2:
-                return slow
-        
-        
-
-        
+        for i in nums:
+            if i in item_set:
+                return i
+            else:
+                item_set.add(i)
