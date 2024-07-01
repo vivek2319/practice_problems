@@ -58,3 +58,25 @@ Expected Auxiliary Space: O(Number of distinct characters).
 
 Constraints:
 1 ≤ |a|,|b| ≤ 105
+"""
+class Solution:
+    
+    #Function is to check whether two strings are anagram of each other or not.
+    def isAnagram(self,a,b):
+        #code here
+        char_count_a = {}
+        for char in a:
+            if char in char_count_a:
+                char_count_a[char] = char_count_a[char] + 1
+            else:
+                char_count_a[char] = 1
+        
+        char_count_b = {}
+        for char in b:
+            if char in char_count_b:
+                char_count_b[char] = char_count_b[char] + 1
+            else:
+                char_count_b[char] = 1
+        
+        return char_count_a == char_count_b
+
