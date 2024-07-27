@@ -19,7 +19,7 @@ def addNode(head, p, data):
 
     temp = head
     i = 0
-    while i < pos and temp:
+    while i < p and temp:
         temp = temp.next
         i += 1
 
