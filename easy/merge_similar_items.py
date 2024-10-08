@@ -50,10 +50,28 @@ Each valuei in items2 is unique.
 
 class Solution:
     def mergeSimilarItems(self, items1: List[List[int]], items2: List[List[int]]) -> List[List[int]]:
+        items1.sort()
+        items2.sort()
+        res = []
+        l = 0
+        r = 0
 
-        item_weights = Counter()
-
-        for value, weight in chain(items1, items2):
-            item_weights[value] = item_weights[value] + weight
-
-        return sorted(item_weights.items())
+        while l < len(items1) or r < len(items2):
+            if l == len(items1):
+                res.append(items2[r])
+                r = r + 1
+            elif r == len(items2):
+                res.append(items1[l])
+                l = l + 1
+            else:
+                if items1[l][0] == items2[r][0]:
+                    res.append([items1[l][0], items1[l][1] + items2[r][1]])
+                    l = l + 1
+                    r = r + 1
+                elif items1[l][0] < items2[r][0]:
+                    res.append(items1[l])
+                    l = l + 1
+                else:
+                    res.append(items2[r])
+                    r = r + 1
+        return res
