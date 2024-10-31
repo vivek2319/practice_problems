@@ -50,3 +50,24 @@ class Solution(object):
         for num in nums:
             xorr ^= num
         return xorr
+##################
+Second Solution
+##################
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        if not nums:
+            return
+        if len(nums) == 1:
+            return nums[0]
+        freq = {}
+
+        for i in nums:
+            if i not in freq:
+                freq[i] = 1
+            else:
+                freq[i] = freq[i] + 1
+        
+        for i, j in freq.items():
+            if j == 1:
+                return i
