@@ -40,16 +40,10 @@ Constraints:
 
 class Solution:
     def countKDifference(self, nums: List[int], k: int) -> int:
-        pair_counter = 0
+        seen = collections.Counter(nums)
+        counter = 0
+        for num in nums:
+            if num + k in seen:
+                counter = counter + seen[num + k]
 
-        nums_counter = Counter()
-
-        for i in nums:
-            res = abs(nums_counter[i-k] + nums_counter[i+k])
-            pair_counter = pair_counter + res
-
-            nums_counter[i] = nums_counter[i] + 1
-        return pair_counter
-
-        
-        return len(result)
+        return counter
