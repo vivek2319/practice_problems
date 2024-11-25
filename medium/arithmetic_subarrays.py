@@ -52,7 +52,7 @@ class Solution:
                     return False
             return True
         
-        for i in range(len(l)):
-            result = check(nums[l[i] : r[i] + 1])
+        for start, end in zip(l, r):
+            result = check(nums[start:end + 1])
             res.append(result)
         return res
