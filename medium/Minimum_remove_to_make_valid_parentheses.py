@@ -35,21 +35,21 @@ s[i] is either '(' , ')', or lowercase English letter.
 
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        # Convert string to list, because String is an immutable data structure in  
-        # Python and it's much easier and memory-efficient to deal with a list for 
-        # this task.
-        s = list(s)
-
         stack = []
 
         for i, char in enumerate(s):
-            if char == '(':
+            if char =='(':
                 stack.append(i)
-            elif char == ')':
-                if stack:
+            elif char ==')':
+                if stack and s[stack[-1]] == '(':
                     stack.pop()
                 else:
-                    s[i] = ''
-        while stack:
-            s[stack.pop()] = ''
-        return ''.join(s)        
+                    stack.append(i)
+        result = []
+        for i, char in enumerate(s):
+            if stack and i == stack[0]:
+                stack.pop(0)
+                continue
+            result.append(char)
+        
+        return ''.join(result)
