@@ -40,8 +40,12 @@ word1 and word2 consist of lowercase English letters.
 
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        merged_string = ''
-        for a, b in zip_longest(word1, word2, fillvalue = ''):
-            merged_string = merged_string + a + b
-        
-        return ''.join(merged_string)
+        result = []
+        i = 0
+        while i < len(word1) or i < len(word2):
+            if i < len(word1):
+                result.append(word1[i])
+            if i < len(word2):
+                result.append(word2[i])
+            i = i + 1
+        return ''.join(result)
